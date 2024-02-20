@@ -17,12 +17,47 @@ body{
     background-color: var(--light-pink);
 }
 
+#container{
+    background-color: white;
+}
+
+#header{
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+    font-size: 28px;
+}
+
+#header h1{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 25px;
+}
+
+.content-block{
+    border-bottom: solid 1px var(--light-pink);
+}
+
+.content-block:last-child{
+    border-bottom: none;
+}
+
+.question{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
 button{
     background: none;
     border: none;
     cursor: pointer;
 }
 
-label{
-    cursor: pointer;
+.answer{
+    display: none;
+}
+
+.close{
+    display: none;
 }
