@@ -1,21 +1,29 @@
-let expandButtons = Array.from(document.getElementsByClassName("expand"));
-let closeButtons = Array.from(document.getElementsByClassName("close"));
+let buttons = Array.from(document.getElementsByClassName("open-close-answer"));
 let answers = Array.from(document.getElementsByClassName("answer"));
 
-if (expandButtons.length !== closeButtons.length || expandButtons.length !== answers.length || answers.length !== closeButtons.length){
-    throw new Error(`not enough buttons: ${expandButtons.length} expanders ${closeButtons.length} closers ${answers.length} answers`);
+if (buttons.length !== answers.length){
+    throw new Error(`not enough buttons: ${buttons.length} buttons ${answers.length} answers`);
 }
 
-for (let i=0; i < expandButtons.length; i++){
-    expandButtons[i].addEventListener('click', e=>{
-        expandButtons[i].style.display = "none";
-        closeButtons[i].style.display = "block";
-        answers[i].style.display = "block";
-    });
+for (let i=0; i < buttons.length; i++){
+    let currentButton = buttons[i];
+    let currentAnswer = answers[i];
+    let plusIcon = currentButton.children[0];
+    let minusIcon = currentButton.children[1];
     
-    closeButtons[i].addEventListener('click', e=>{
-        expandButtons[i].style.display = "block";
-        closeButtons[i].style.display = "none";
-        answers[i].style.display = "none";
+    currentButton.addEventListener('click', e=>{
+        plusIcon.style.display === 'none' ? closeAnswer(plusIcon, minusIcon, currentAnswer) : openAnswer(plusIcon, minusIcon, currentAnswer);
     });
+}
+
+function openAnswer(plusIcon, minusIcon, currentAnswer){
+    plusIcon.style.display = 'none';
+    minusIcon.style.display = 'block';
+    currentAnswer.style.display = 'block';
+}
+
+function closeAnswer(plusIcon, minusIcon, currentAnswer){
+    plusIcon.style.display = 'block';
+    minusIcon.style.display = 'none';
+    currentAnswer.style.display = 'none';
 }
